@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Il Dandy</title>
+    <style>
+        body { margin: 0; overflow: hidden; background: black; }
+        canvas { width: 100%; height: 100vh; display: none; } /* Nascosto inizialmente */
+        
+        #title, #game-over, #kill-text, #subtitle {
+            position: absolute; 
+            width: 100%; 
+            text-align: center; 
+            font-family: 'Impact', 'Arial Black', monospace; 
+            text-transform: uppercase; 
+            display: none;
+            text-shadow: 4px 4px 0 #000, -4px -4px 0 #000, 4px -4px 0 #000, -4px 4px 0 #000;
+        }
+
+        #title {
+            top: 25%;
+            font-size: 14vw;
+            color: #ff0000;
+            letter-spacing: 8px;
+            transform: rotate(-5deg);
+        }
+
+        #subtitle {
+            top: 55%;
+            font-size: 6vw;
+            color: #ffffff;
+            letter-spacing: 3px;
+            text-shadow: 2px 2px 0 #000;
+        }
+
+        #game-over {
+            top: 70%;
+            font-size: 5vw;
+            color: #ff0000;
+            letter-spacing: 3px;
+            z-index: 10;
+            animation: fadeGameOver 24s linear forwards;
+        }
+
+        #kill-text {
+            top: 50%;
+            transform: translateY(-50%) rotate(-10deg);
+            font-size: 8vw;
+            color: #ffff00;
+            letter-spacing: 6px;
+        }
+
+        #score { 
+            position: absolute; 
+            top: 10px; 
+            left: 10px; 
+            font-family: 'Impact', 'Arial Black', monospace; 
+            font-size: 28px;
+            color: #ff00ff;
+            text-transform: uppercase;
+            text-shadow: 3px 3px 0 #000, -3px -3px 0 #000;
+            display: none;
+        }
+
+        #end-crawl {
+            position: absolute;
+            top: 10%;
+            width: 90%;
+            left: 5%;
+            font-family: 'Arial', sans-serif;
+            font-size: 4vw;
+            color: #ffff00;
+            line-height: 1.5;
+            text-align: center;
+            text-transform: none;
+            animation: fadeText 17s linear forwards;
+            white-space: pre-wrap;
+            z-index: 5;
+            display: none;
+        }
+
+        #intro-video {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100vh;
+            object-fit: cover;
+            z-index: 20; /* Sopra tutto */
+        }
+
+        @keyframes fadeText {
+            0% { opacity: 0; }
+            5.88% { opacity: 1; }
+            94.12% { opacity: 1; }
+            100% { opacity: 0; }
+        }
+
+        @keyframes fadeGameOver {
+            0% { opacity: 0; }
+            5.88% { opacity: 1; }
+            70.83% { opacity: 1; }
+            100% { opacity: 0; }
+        }
+
+        #end-crawl strong {
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <video id="intro-video" src="11.mp4" autoplay muted></video> <!-- Video iniziale -->
+    <canvas id="gameCanvas"></canvas>
+    <div id="title">Il Dandy</div>
+    <div id="subtitle">Aiuta il Dandy a non fidanzarsi</div>
+    <div id="score">Score: 0 Giorni da single</div>
+    <div id="game-over"></div>
+    <div id="kill-text">SCATOLE PARLANTI!!</div>
+    <div id="end-crawl"></div>
+    <script src="game.js"></script>
+</body>
+</html>
